@@ -1,0 +1,106 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Introduction
+  </strong>
+ </h2>
+ <p variant="body1">
+  The goal of this project is to create a reliable table booking system for Little Lemon’s database. In the preceding videos MySQL has been used to manage the database connection and interaction. Further interaction between the little_lemon database frontend and MySQL has been facilitated using MySQL connector/python; a database API provided by Oracle that allows Python code to be used when interacting with a database.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Python
+  </strong>
+ </h2>
+ <p variant="body1">
+  Python is a hugely popular programming language designed to be as user friendly as possible. To interact with Python, you need to download and install an IDE. IDE stands for Integrated Development Environment. It is where you type and run your Python code. There are a host of viable IDEs, each with their own benefits and each capable of executing all Python commands.
+ </p>
+ <p variant="body1">
+  As such, selecting an IDE often comes down to personal preference or previous experience. For the purposes of this project, it is best to use an IDE that you are familiar with. So, be sure to download and install Jupyter Notebook as your IDE. You can refer to the
+  <a href="https://www.coursera.org/learn/database-clients/lecture/W96Vh/installation-and-setup" title="">
+   Installation and setup
+  </a>
+  video from the Database Clients course for more guidance on setting up the Jupyter Notebook.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Working Environment
+  </strong>
+ </h2>
+ <p variant="body1">
+  A drive is required to facilitate communication between Python and MySQL. In preceding courses, you have covered the installation and workings of mysql-connector. MySQL connector is a driver for Python and MySQL which takes Python syntax and passes it to MySQL in a fashion that allows for the running of MySQL queries.
+ </p>
+ <p variant="body1">
+  This driver can be installed on the command line or directly from the Jupyter notebook using a
+  <em>
+   pip install
+  </em>
+  command. The connector/python is a driver for interacting with MySQL through a range of programming languages including C, C++, Node.js to name a few.
+ </p>
+ <p variant="body1">
+  MySQL Connector/Python offers support for all features that are capable within MySQL. This includes standard queries, transactions and procedures. It provides full conversion capabilities between Python and MySQL datatypes. Any required conversion happens behind the scenes. For example, the date time function in MySQL behaves differently to MySQL date time. However, a lot of this heavy lifting is done automatically without requiring intervention from the programmer. In addition, MySQL Connector/Python provides data compression for faster communication between client and server.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Conclusion
+  </strong>
+ </h2>
+ <p variant="body1">
+  In this reading, a recap has been provided on the Python environment and how it can be configured to interact with a MySQL database. Having established and configured the database client, your next step is to begin writing the required code for creating the little_lemon Booking System.
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

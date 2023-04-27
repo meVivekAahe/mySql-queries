@@ -1,0 +1,414 @@
+<meta charset="utf-8"/>
+<co-content>
+ <p>
+  This reading covers the process of creating a table in a database. You’ve learned about creating and dropping a database using CREATE DATABASE and DROP DATABSE SQL commands. You also learned the SQL syntax of creating a table in the database using the CREATE TABLE syntax and modifying the structure of an already created table using ALTER TABLE.
+ </p>
+ <p>
+  The main objective of this reading is to help you develop a more practical understanding of how the CREATE TABLE statement works. You'll also learn how to use its syntax correctly. Furthermore, this reading also highlights some important points to note when creating a database table.
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Important points on creating a table
+  </strong>
+ </h2>
+ <p>
+  You know already that in SQL, the CREATE TABLE syntax is available in the Data Definition Language (DDL) subset which is used to create a new database table.
+ </p>
+ <p>
+  Here are some important points to remember when using the CREATE TABLE syntax. These points are also useful for creating tables in general.
+ </p>
+ <ul bullettype="bullets">
+  <li aria-level="1" aria-posinset="1">
+   <p>
+    Always give a meaningful name to your table as well as the columns or fields of the table.
+   </p>
+  </li>
+  <li aria-level="1" aria-posinset="2">
+   <p>
+    The data types of columns or fields may vary from one database system to another. For example, NUMBER is supported in Oracle database for integer values whereas INT is supported in MySQL.
+   </p>
+  </li>
+ </ul>
+ <ul bullettype="bullets">
+  <li aria-level="1" aria-posinset="1">
+   <p>
+    It's good practice to refer to the list of data types supported by the database system that you are using, namely MySQL, SQL Server and Oracle.
+   </p>
+  </li>
+  <li aria-level="1" aria-posinset="2">
+   <p>
+    Remember to specify the appropriate length for data types where applicable.
+   </p>
+  </li>
+ </ul>
+ <ul bullettype="bullets">
+  <li aria-level="2" aria-posinset="1">
+   <p>
+    For example, VARCHAR is the preferred data type to use if you are storing text-based data because it saves space. VARCHAR takes up 1 byte per character, plus another 2 bytes to hold length. So, for example, if you set a VARCHAR(100) data type to a first name column and store a value of "Jen" in it, then it would take up 3 bytes (for J, E, and N) plus another 2 bytes, that is 5 bytes in total to store that value.
+   </p>
+  </li>
+ </ul>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Using the CREATE TABLE statement
+  </strong>
+ </h2>
+ <p>
+  Let’s inspect the CREATE TABLE syntax more closely. In this example, let’s look at the syntax to create a table named “customers”in the sample database. The table includes the following columns/fields:
+ </p>
+ <ul bullettype="bullets">
+  <li aria-level="1" aria-posinset="1">
+   <p>
+    CustomerId
+   </p>
+  </li>
+  <li aria-level="1" aria-posinset="2">
+   <p>
+    FirstName
+   </p>
+  </li>
+  <li aria-level="1" aria-posinset="3">
+   <p>
+    LastName
+   </p>
+  </li>
+  <li aria-level="1" aria-posinset="4">
+   <p>
+    Company
+   </p>
+  </li>
+  <li aria-level="1" aria-posinset="4">
+   <p>
+    Address
+   </p>
+  </li>
+  <li aria-level="1" aria-posinset="4">
+   <p>
+    City
+   </p>
+  </li>
+  <li aria-level="1" aria-posinset="4">
+   <p>
+    State
+   </p>
+  </li>
+  <li aria-level="1" aria-posinset="4">
+   <p>
+    Country
+   </p>
+  </li>
+  <li aria-level="1" aria-posinset="4">
+   <p>
+    PostalCode
+   </p>
+  </li>
+  <li aria-level="1" aria-posinset="4">
+   <p>
+    Phone
+   </p>
+  </li>
+  <li aria-level="1" aria-posinset="4">
+   <p>
+    Fax
+   </p>
+  </li>
+  <li aria-level="1" aria-posinset="4">
+   <p>
+    Email
+   </p>
+  </li>
+  <li aria-level="1" aria-posinset="4">
+   <p>
+    SupportRapid
+   </p>
+  </li>
+ </ul>
+ <p>
+  The table is created using the following syntax:
+ </p>
+ <p>
+  <strong>
+   CREATE
+  </strong>
+  <strong>
+  </strong>
+  <strong>
+   TABLE
+  </strong>
+  <strong>
+   customers(
+  </strong>
+  <strong>
+   CustomerId
+  </strong>
+  <strong>
+   INT
+  </strong>
+  <strong>
+   ,
+  </strong>
+  <strong>
+   FirstName
+  </strong>
+  <strong>
+   VARCHAR
+  </strong>
+  <strong>
+   (
+  </strong>
+  <strong>
+   40
+  </strong>
+  <strong>
+   ),
+  </strong>
+  <strong>
+   LastName
+  </strong>
+  <strong>
+   VARCHAR
+  </strong>
+  <strong>
+   (
+  </strong>
+  <strong>
+   20
+  </strong>
+  <strong>
+   ),
+  </strong>
+  <strong>
+   Company
+  </strong>
+  <strong>
+   VARCHAR
+  </strong>
+  <strong>
+   (
+  </strong>
+  <strong>
+   80
+  </strong>
+  <strong>
+   ),
+  </strong>
+  <strong>
+   Address
+  </strong>
+  <strong>
+  </strong>
+  <strong>
+   VARCHAR
+  </strong>
+  <strong>
+   (
+  </strong>
+  <strong>
+   70
+  </strong>
+  <strong>
+   ),
+  </strong>
+  <strong>
+   City
+  </strong>
+  <strong>
+   VARCHAR
+  </strong>
+  <strong>
+   (
+  </strong>
+  <strong>
+   40
+  </strong>
+  <strong>
+   ),
+  </strong>
+  <strong>
+   State
+  </strong>
+  <strong>
+  </strong>
+  <strong>
+   VARCHAR
+  </strong>
+  <strong>
+   (
+  </strong>
+  <strong>
+   40
+  </strong>
+  <strong>
+   ),
+  </strong>
+  <strong>
+   Country
+  </strong>
+  <strong>
+   VARCHAR
+  </strong>
+  <strong>
+   (
+  </strong>
+  <strong>
+   40
+  </strong>
+  <strong>
+   ),
+  </strong>
+  <strong>
+   PostalCode
+  </strong>
+  <strong>
+   VARCHAR
+  </strong>
+  <strong>
+   (
+  </strong>
+  <strong>
+   10
+  </strong>
+  <strong>
+   ),
+  </strong>
+  <strong>
+   Phone
+  </strong>
+  <strong>
+   VARCHAR
+  </strong>
+  <strong>
+   (
+  </strong>
+  <strong>
+   24
+  </strong>
+  <strong>
+   ),
+  </strong>
+  <strong>
+   Fax
+  </strong>
+  <strong>
+   VARCHAR
+  </strong>
+  <strong>
+   (
+  </strong>
+  <strong>
+   24
+  </strong>
+  <strong>
+   ),
+  </strong>
+  <strong>
+   Email
+  </strong>
+  <strong>
+   VARCHAR
+  </strong>
+  <strong>
+   (
+  </strong>
+  <strong>
+   60
+  </strong>
+  <strong>
+   ),
+  </strong>
+  <strong>
+   SupportRapid
+  </strong>
+  <strong>
+   INT
+  </strong>
+  <strong>
+  </strong>
+  <strong>
+   );
+  </strong>
+  <strong>
+  </strong>
+ </p>
+ <p>
+  The main syntax here is the CREATE TABLE syntax.
+ </p>
+ <p>
+  You then provide the name of the table, in this case "customers".
+ </p>
+ <p>
+  Then a pair of parentheses should follow. Within the parenthesis the column or field names are given followed by the data type of each and the size or length of data that can be stored.
+ </p>
+ <p>
+  <strong>
+   CustomerId
+  </strong>
+  and
+  <strong>
+   SupportRapidfiles
+  </strong>
+  are of type
+  <strong>
+   INT
+  </strong>
+  because they store numeric values. The rest of the fields have a data type of
+  <strong>
+   VARCHAR
+  </strong>
+  but have different lengths.
+ </p>
+ <p>
+  The lengths are specified according to the amount of data (the number of characters) that need to be stored in these fields.
+ </p>
+ <p>
+  At the end of the statement, remember to put the semicolon.
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

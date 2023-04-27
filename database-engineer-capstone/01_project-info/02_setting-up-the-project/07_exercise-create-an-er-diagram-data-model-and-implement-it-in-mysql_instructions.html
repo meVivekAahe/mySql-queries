@@ -1,0 +1,243 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Scenario
+  </strong>
+ </h2>
+ <p variant="body1">
+  Little Lemon needs to build a robust relational database system in MySQL in which they can store large amounts of data. They then need to easily manage and find this data as required. This database system should maintain information about the following aspects of the business:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    Bookings.
+   </p>
+  </li>
+  <li>
+   <p>
+    Orders.
+   </p>
+  </li>
+  <li>
+   <p>
+    Order delivery status.
+   </p>
+  </li>
+  <li>
+   <p>
+    Menu.
+   </p>
+  </li>
+  <li>
+   <p>
+    Customer details.
+   </p>
+  </li>
+  <li>
+   <p>
+    and Staff information.
+   </p>
+  </li>
+ </ul>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Prerequisites
+  </strong>
+ </h2>
+ <p variant="body1">
+  Use MySQL Workbench to create the ER diagram and to implement it in your MySQL server.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Task Instructions
+  </strong>
+ </h2>
+ <p variant="body1">
+  Little Lemon wants you to use MySQL Workbench to develop a relational database system and implement it in MySQL server. Save your database capstone project files in a folder on your machine and name it
+  <var>
+   db-capstone-project
+  </var>
+  .
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Task 1
+  </strong>
+ </h2>
+ <p variant="body1">
+  In this task, you need to create a normalized ER diagram (that adheres to 1NF, 2NF and 3NF) with relevant relationships to meet the data requirements of Little Lemon. When creating your diagram, include the following tables:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    Bookings: To store information about booked tables in the restaurant including booking id, date and table number.
+   </p>
+  </li>
+  <li>
+   <p>
+    Orders: To store information about each order such as order date, quantity and total cost.
+   </p>
+  </li>
+  <li>
+   <p>
+    Order delivery status: To store information about the delivery status of each order such as delivery date and status.
+   </p>
+  </li>
+  <li>
+   <p>
+    Menu: To store information about cuisines, starters, courses, drinks and desserts.
+   </p>
+  </li>
+  <li>
+   <p>
+    Customer details: To store information about the customer names and contact details.
+   </p>
+  </li>
+  <li>
+   <p>
+    Staff information: Including role and salary.
+   </p>
+  </li>
+ </ul>
+ <p variant="body1">
+  Here is some guidance for completing this task:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p variant="body1">
+    Identify entities and related attributes.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Identify primary and foreign keys.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Define data types and constraints.
+   </p>
+  </li>
+ </ul>
+ <p variant="body1">
+  Once you have designed your ER diagram inside your MySQL Workbench Model Editor you then need to save your data model as
+  <var>
+   LittleLemonDM
+  </var>
+  and export it as a PNG file.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Task 2
+  </strong>
+ </h2>
+ <p variant="body1">
+  In this second task, you need to implement the Little Lemon data model inside your MySQL server. Here is some guidance for completing this task:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p variant="body1">
+    Use the forward engineer method in MySQL Workbench to implement the Little Lemon data model inside MySQL server.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Name your database
+    <var>
+     LittleLemonDB
+    </var>
+    .
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Export the
+    <var>
+     LittleLemonDB
+    </var>
+    as a single contained SQL file and save it in the
+    <var>
+     db-capstone-project
+    </var>
+    folder.
+   </p>
+  </li>
+ </ul>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Task 3
+  </strong>
+ </h2>
+ <p variant="body1">
+  In the third and final task, you need to show the databases in the MySQL server. Write a SQL code inside MySQL Workbench SQL editor to show all your databases in MySQL server. Check if the Little Lemon database is included in the list.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Conclusion
+  </strong>
+ </h2>
+ <p variant="body1">
+  In this exercise, you created a data model for Little Lemon, implemented it in MySQL and listed all databases in MySQL server.
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

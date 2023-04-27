@@ -1,0 +1,120 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Introduction
+  </strong>
+ </h2>
+ <p variant="body1">
+  When you develop software products, you’ll most likely collaborate as part of a group. In these groups, each developer works on a different aspect of the project and makes regular changes to the source code as required.
+ </p>
+ <p variant="body1">
+  However, these changes don’t always integrate well with the existing code. Or they may not integrate well with code being developed concurrently by another developer. Instances such as these may inadvertently introduce bugs into the project. So, it’s important to maintain track of all changes made to a project and undo any changes that damage the code using version control.
+ </p>
+ <p variant="body1">
+  In this reading, you’ll recap the basics of version control and the Git version control system in preparation for your exercise tasks.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Version Control
+  </strong>
+ </h2>
+ <p variant="body1">
+  As you know from previous courses, version control system (or VCS) is a system for maintaining consistency in changes to a project.
+ </p>
+ <p variant="body1">
+  There are many different types of VCS, including Git, Subversion, CVS and ClearCase. These different VCS make use of different methodologies. However, the fundamental principal of each remains the same: provide a system that allows a group of individuals to collaborate on a project at the same time.
+ </p>
+ <p variant="body1">
+  In this project, you’ll use Git as your VCS. You may be familiar with Git from projects you completed in previous courses. Git is a free and open-source software used to maintain code integrity.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Branching
+  </strong>
+ </h2>
+ <p variant="body1">
+  Version control is the idea that a record can be maintained over time of the changes and activities that have occurred in a project. To facilitate version control for individual users, as well as the team in general, Git enables branching.
+ </p>
+ <p variant="body1">
+  Branching involves downloading a copy of the code to a local depository. The user is then free to work on this code as required. Any changes that the user makes can be saved with a meaningful title, such as “bug fix”, “typo” or “function X added”. These changes are recorded with a time stamp so that other users can tell when the changes occurred. If an error is detected, then the user can just roll back the changes to an earlier implementation.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Distributed System
+  </strong>
+ </h2>
+ <p variant="body1">
+  Collaborating on a project as part of a group means that there are many people working on a code base at the same time.
+ </p>
+ <p variant="body1">
+  Through branching it is possible for each member of the project to have a local instance on their machine. When a collaborator is happy that their code is ready for distribution then they can add it to the main code repository. This is known as “making a merge”.
+ </p>
+ <p variant="body1">
+  During the merging process, Git highlights the changes between the local instance of the code and the centralized version. The programmer is then asked to pick which instance of the code to keep in the central repository.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Conclusion
+  </strong>
+ </h2>
+ <p variant="body1">
+  In this reading, you recapped the basics of version control and Git. You also reviewed the importance of working collaboratively, the obstacles involved, and how you can avoid these obstacles using version control system.
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

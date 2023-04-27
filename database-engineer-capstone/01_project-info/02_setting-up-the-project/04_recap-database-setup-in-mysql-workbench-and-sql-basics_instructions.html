@@ -1,0 +1,349 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Introduction
+  </strong>
+ </h2>
+ <p variant="body1">
+  As a database engineer working with massive amounts of data, you need to build a proper database system that meets the data requirements of your business.
+ </p>
+ <p variant="body1">
+  There are multiple database managements systems available for you to use. There are also different developments tools that you can use to create and manage your databases efficiently.
+ </p>
+ <p variant="body1">
+  In this reading, you’ll review some of these systems, including:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p variant="body1">
+    MySQL database management system,
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    MySQL Workbench development tool,
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    SQL basics,
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    And how to set up your database environment.
+   </p>
+  </li>
+ </ul>
+ <p variant="body1">
+  This recap will support you in preparing for your exercise tasks.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   MySQL
+  </strong>
+ </h2>
+ <p variant="body1">
+  MySQL is an open-source relational database management system. It’s one of the most widely used management systems for building both personal and industry relational databases.
+ </p>
+ <p variant="body1">
+  There are several advantages offered to database engineers who work with MySQL:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p variant="body1">
+    Build a secure database system,
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Offers high level scalability,
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Provides high Performance,
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    24 hours x 7 days a week uptime with cluster servers,
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Supports robust transactional database engines,
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Complete Workflow Control,
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Reduced cost,
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    And facilitates easy to use and efficient database management.
+   </p>
+  </li>
+ </ul>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   MySQL Workbench
+  </strong>
+ </h2>
+ <p variant="body1">
+  MySQL Workbench is a unified visual tool for database modeling and database management. It was developed by Oracle, the company that manages MySQL.
+ </p>
+ <p variant="body1">
+  MySQL Workbench is also free, open-source and cross-platform tool that runs on Windows, Mac and Linux. MySQL Workbench enables you to speed up the database design and development process.
+ </p>
+ <p variant="body1">
+  Key features of MySQL Workbench include the following:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p variant="body1">
+    Simplify database design and maintenance.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Document data requirements in the form of visualized ER diagrams.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Support model-driven database development.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Automate the development process without the need for much coding.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Design data models that meet the expected standards.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Provide capabilities for creating data models in the visual designer.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Use the Forward and the Reverse Engineer methods to create data models and databases.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Maintain different versions of database schemas.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Support schema synchronization and comparison functionality.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Use the DBDoc documentation tool to document all details of your database design.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Facilitate visual SQL editor for easy use to write, run and debug SQL statements.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Provide complete administrative control over all aspects of MySQL server.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Import and export mysqldump files, and export query results sets as CSV, XML and HTML files.
+   </p>
+  </li>
+ </ul>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Installing MySQL Workbench
+  </strong>
+ </h2>
+ <p variant="body1">
+  MySQL Workbench is open source and cross platform system available for Windows, Linux, and macOS.
+ </p>
+ <p variant="body1">
+  Installing MySQL Workbench with MySQL server is a straightforward process. MySQL Workbench downloads are available at the MySQL website:
+  <a href="https://dev.mysql.com/downloads/workbench/" title="">
+   https://dev.mysql.com/downloads/workbench/
+  </a>
+ </p>
+ <p variant="body1">
+  For more details about the installation instructions, you can review the Installing MySQL Workbench item in the Advanced Data Modeling course.
+ </p>
+ <p variant="body1">
+  Oracle provides detailed instructions about the MySQL Workbench installation process in the following link:
+  <a href="https://dev.mysql.com/doc/refman/8.0/en/installing.html" title="">
+   https://dev.mysql.com/doc/refman/8.0/en/installing.html
+  </a>
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   SQL Basics
+  </strong>
+ </h2>
+ <p variant="body1">
+  SQL (Structured Query Language) is the standard query language for accessing and manipulating relational databases. SQL provides four categories of commands to create, manipulate and manage data in a database known as DDL, DML, DCL and TCL.
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p variant="body1">
+    Data Definition Language (DDL) commands are used to define and modify tables in a database such as Create, Drop, Alter and Truncate commands.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Data Manipulation Language (DML) commands are used to query, delete and update data in the database such as select, insert, update and delete commands.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Data Control Language (DCL) commands are used to control the roles and privileges of users of a database system such as Grant and Revoke commands.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Transaction Control Language (TCL) to manage transactions in the database such as Commit and Rollback Commands.
+   </p>
+  </li>
+ </ul>
+ <p variant="body1">
+  If you want to learn more about each category of commands and how to use them, you can review
+  <a href="https://www.coursera.org/learn/introduction-to-databases/supplement/x4kOK/common-sql-commands" title="">
+   Common SQL Commands
+  </a>
+  item in the ‘Introduction to database’ course.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Database setup
+  </strong>
+ </h2>
+ <p variant="body1">
+  There are few issues you need to consider when setting up MySQL Workbench to create and manage your databases.
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p variant="body1">
+    Create a new user. This is the most secure way to connect to your MySQL database, as you can manage user roles and privileges.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Create an instance of a MySQL server. This can be done in the MySQL Workbench home screen. In the home-screen side panel, you can select MySQL Connections option to view or create instances of MySQL.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Use connections option to load, configure, group and view information about each of your MySQL connections. You can select “Users and Privileges” under the “Management” menu to view a list of current database users.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Use your MySQL connection to begin working with database schemas and SQL queries.
+   </p>
+  </li>
+ </ul>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  In MySQL Workbench, you can create your database in different ways. For example, you can create and use your database by writing the relevant SQL statements.
+ </p>
+ <p variant="body1">
+  Alternatively, you can create a data model in the model designer first, then transform it into a SQL schema that can be executed and implemented directly in a MySQL server without typing any SQL code.
+ </p>
+ <p variant="body1">
+  To learn more about this process, you can review the
+  <a href="https://www.coursera.org/learn/advanced-data-modeling/lecture/bIYwL/database-modeling-in-mysql-workbench" title="">
+   Database modeling in MySQL Workbench
+  </a>
+  item in the Advanced data modeling course.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Conclusion
+  </strong>
+ </h2>
+ <p variant="body1">
+  In this reading you learned about the various categories of SQL commands, MySQL database management system and MySQL Workbench. You are now ready to start developing your database system and complete the different tasks in this lesson.
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

@@ -1,0 +1,246 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Bob Myers">
+   <meta name="GENERATOR" content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+   <title>Array Basics</title>
+</head>
+<body text="#000000" bgcolor="#FFFFFF">
+<h1>Array Basics</h1>
+
+<h2>
+Definition</h2>
+An <b>array</b> is an indexed collection of data elements of the same type.
+<br>1)&nbsp; <b>Indexed</b> means that the array elements are numbered
+(starting at 0).
+<br>2)&nbsp; The restriction of the <b>same type</b> is an important one,
+because arrays are stored in consecutive memory cells.&nbsp; Every cell
+must be the same type (and therefore, the same size).
+
+<h2>
+Declaring Arrays:</h2>
+An array declaration is similar to the form of a normal declaration (typeName
+variableName), but we add on a size:
+<pre>
+  <i>typeName variableName</i>[<i>size</i>]; 
+</pre>
+<p>This declares an array with the specified <i>size</i>, named <i>variableName</i>,
+of type <i>typeName</i>.&nbsp; The array is indexed from<i> </i><u>0</u>
+to <u>size-1</u>. The size (in brackets) must be an integer literal or a
+constant variable. The compiler uses the size to determine how much space
+to allocate (i.e. how many bytes).
+
+<p>Examples:
+<pre>
+  int list[30];            // an array of 30 integers 
+  char name[20];           // an array of 20 characters 
+  double nums[50];         // an array of 50 decimals 
+  int table[5][10];        // a two dimensional array of integers 
+</pre>
+
+<p>The last example illustrates a two dimensional array (which we often
+like to think about as a table). We usually think of the first size
+as rows, and the second as columns, but it really does not matter, as long
+as you are consistent! So, we could think of the last declaration
+as a table with 5 rows and 10 columns, for example.
+<br>&nbsp;
+
+<h2>
+Initializing Arrays:</h2>
+With normal variables, we could declare on one line, then initialize on
+the next:
+<pre>
+  int x; 
+  x = 0; 
+</pre>
+<p>Or, we could simply initialize the variable in the declaration statement
+itself:
+<pre>
+  int x = 0; 
+</pre>
+<p>Can we do the same for arrays? Yes, for the built-in types. Simply list the array
+values (literals) in set notation { } after the declaration. Here are some examples:
+<pre>
+  int list[4] = {2, 4, 6, 8}; 
+  char letters[5] = {'a', 'e', 'i', 'o', 'u'}; 
+  double numbers[3] = {3.45, 2.39, 9.1}; 
+  int table[3][2] = {{2, 5} , {3,1} , {4,9}}; 
+</pre>
+
+<h3>C-style strings</h3>
+  
+Arrays of type <tt><b>char</b></tt> are special cases.
+
+<ul>   
+<li>We use <b>strings</b> frequently, but there is no built-in string type
+in the language</li>
+<li>A <b>C-style string</b> is implemented as an array of type
+<tt>char</tt> that ends with a special character, called the "null
+character".
+ <ul>
+ <li>The null character has ASCII value 0</li>
+ <li>The null character can be written as a literal in code this way:
+     <tt>'\0'</tt></li>
+ </ul>
+</li> 
+  
+<li>Every string literal (something in double-quotes) <b>implicitly</b>
+contains the null character at the end</li>
+</ul>
+
+<p>Since character arrays are used to store C-style strings, you can
+initialize a character array with a string literal (i.e. a string in
+double quotes), as long as you leave room for the null character in the
+allocated space.
+
+<pre>
+  char name[7] = "Johnny";
+</pre>
+
+<p>Notice that this would be equivalent to:
+<pre>
+  char name[7] = {'J', 'o', 'h', 'n', 'n', 'y', '\0'};
+</pre>
+
+<h3>Variations in initializing</h3>
+
+<p>Array declarations <b>must</b> contain the information about
+the size of the array. It is possible to leave the size out of the  
+[ ] in the declaration <b>as long as</b> you initialize the array inline,
+in which case the array is made just large enough to capture the 
+initialized
+data. Examples:
+<pre>
+  char name[] = "Johnny";        // size is 7
+  int list[] = {1, 3, 5, 7, 9};  // size is 5
+</pre>
+
+<p>Another shortcut with initializer sets is to use fewer elements than
+the size specifies. Remaining elements will default to 0.  It is illegal
+to use a set containing <b>more</b> elements than the allocated size.
+<pre>
+  int list[5] = {1, 2};         // array is {1, 2, 0, 0, 0}
+  int nums[3] = {1, 2, 3, 4};   // illegal declaration.
+</pre>
+
+<p>Note:  Using initializers on the declaration, as in the examples above, 
+is
+probably not going to be as desirable with very large arrays.
+<br>Another common way to initialize an array -- with a <b>for</b> loop:
+<br>This example initializes the array numList to {0, 2, 4, 6, 8, 10, 12,
+14, 16, 18}.
+<pre>
+  int numList[10];
+  int i;
+  for (i = 0; i < 10; i++)
+     numList[i] = i * 2;
+</pre>
+
+<br>
+  
+
+<h2>
+Using Arrays:</h2>
+Once your arrays are declared, you access the elements in an array with
+the array name, and the index number inside brackets [ ]. If
+an array is declared as: <u>typeName varName[size]</u>, then the
+element with index n is referred to as <u>varName[n]</u>. Examples:
+<pre>
+  int x, list[5];        // declaration 
+  double nums[10];       // declaration 
+
+  list[3] = 6;           // assign value 6 to array item with index 3 
+  cout << nums[2];       // output array item with index 2 
+  list[x] = list[x+1]; 
+</pre>
+
+<p>It would not be appropriate, however, to use an array index that is
+outside the bounds of the valid array indices:
+<pre>
+  list[5] = 10;        // bad statement, since your valid indices are 0 - 4. 
+</pre>
+
+<p>The statement above is syntactically <b>legal</b>, however. It is the
+programmer's job to make sure that out of bounds indices are not used.
+Do not count on the compiler to check it for you -- it will not!
+<br>&nbsp;
+
+<h3>
+Copying arrays:</h3>
+If we have these two arrays, how do we copy the contents of <tt>list2</tt>
+to <tt>list1</tt>?
+<pre>
+  int list1[5]; 
+  int list2[5] = {3, 5, 7, 9, 11}; 
+</pre>
+
+<p>With variables, we use the assignment statement, so this would be the
+natural tendency -- but it is wrong!
+<pre>
+  list1 = list2;  // this does NOT copy the array contents 
+</pre>
+
+<p>We must copy between arrays element by element. A <b>for</b> loop
+makes this easy, however:
+<pre>
+  for (int i = 0; i < 5; i++) 
+    list1[i] = list2[i]; 
+</pre>
+<br>
+
+<hr>
+
+<h2>
+Simple I/O with strings:</h2>
+In the special case of strings (null-terminated character arrays), they
+can be used like normal arrays.&nbsp; Accessing a single array element
+means accessing one character.
+<pre>
+  char greeting[] = "Hello"; 
+  char word1[20]; 
+
+  cout &lt;&lt; greeting[1];  // prints the letter 'e' 
+  cout &lt;&lt; greeting[4];  // prints the letter 'o' 
+</pre>
+
+<p>Strings can also be output and input in their entirety, with the standard
+input and output objects (cin and cout):
+<br>The following line outputs the word "Hello":
+<pre>
+  cout &lt;&lt; greeting; 
+</pre>
+
+Be careful to <b>only</b> use this on char arrays that are being used as
+C-style strings.  (This means, only if the null character is present as a
+terminator).
+
+
+<p>The following line allows the entry of a word (up to 19 characters and 
+a terminating null character) from the keyboard, which is stored in the 
+array <tt>word1:</tt><tt></tt>
+<pre>
+  cin &gt;&gt; word1;
+</pre>
+
+<p>Characters are read from the keyboard until the first "white space"
+(space, tab, newline, etc) character is encountered.&nbsp; The input is 
+stored in the character array and the null character is automatically 
+appended.
+<br>&nbsp;
+
+<hr>
+
+<h2>Examples</h2>
+
+<ul>
+<li><a href="../examples/arrays/arrayinit.cpp">arrayinit.cpp</a> -- 
+example of array declarations and initializer sets</li>
+<li><a href="../examples/arrays/strings.cpp">strings.cpp</a> --
+initializing and printing c-style strings</li>
+<li><a href="../examples/arrays/arrayuse.cpp">arrayuse.cpp</a> -- 
+a few examples of array usage</li>
+</ul>
+
+</body>
+</html>

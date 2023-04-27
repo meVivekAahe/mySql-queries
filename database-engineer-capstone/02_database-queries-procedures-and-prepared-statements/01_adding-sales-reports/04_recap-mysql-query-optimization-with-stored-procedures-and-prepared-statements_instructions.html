@@ -1,0 +1,279 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Introduction
+  </strong>
+ </h2>
+ <p variant="body1">
+  In this reading, you’ll recap the importance of query optimization. You’ll also recap techniques that can be used to optimize databases, such as stored procedures and prepared statements.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Query optimization
+  </strong>
+ </h2>
+ <p variant="body1">
+  When working with MySQL databases, the response time, or turnaround time, is extremely important. It’s particularly important in terms of how long the database takes to respond to your SQL queries. As data volumes grow, and the data requirements grow increasingly more complex, then performance becomes more important for a better end-user experience.
+ </p>
+ <p variant="body1">
+  Database optimization is the best way to reduce database system response time. Response time is the time taken to transmit a query, process it, and transmit the response or information back to the user.
+ </p>
+ <p variant="body1">
+  The performance of a database depends on both the software and the hardware. However, the focus of this reading is on software or database-level performance optimization. At the database level, the structure of the database, and the queries that you execute, play an important role in performance optimization.
+ </p>
+ <p variant="body1">
+  As you should know from previous courses, you can optimize database queries using stored procedures and prepared statements. Let’s recap the basics of these techniques.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Stored procedures
+  </strong>
+ </h2>
+ <p variant="body1">
+  When working with a database, you may often want to reuse the same code of SQL statements repeatedly. In this case, you can save your block of code in the form of a stored procedure that you can use whenever needed.
+ </p>
+ <p variant="body1">
+  When you build a stored procedure, you need to adhere to the following best practices:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p variant="body1">
+    Each procedure must have a unique name.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Each procedure may have zero or many parameters.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Each procedure may contain one or more SQL statements.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Each procedure may contain one or more variable and/or control statements.
+   </p>
+  </li>
+ </ul>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  Stored procedures optimize your code and make it more consistent, reusable and easier to use and maintain.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Create a stored procedure
+  </strong>
+ </h2>
+ <p variant="body1">
+  To create a stored procedure, you must use the CREATE PROCEDURE command, specify the procedure name with the parameters list and create the procedure logic with relevant SQL code.
+ </p>
+ <p variant="body1">
+  The following syntax presents a block of code that represents the basic syntax of a stored procedure:
+ </p>
+ <pre language="sql">CREATE PROCEDURE ProcedureName()  
+SELECT statements;</pre>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  In this syntax, the CREATE PROCEDURE command creates the stored procedure, followed by the procedure name.
+ </p>
+ <p variant="body1">
+  The name of the procedure must be followed with a pair of parentheses
+  <var>
+   ( )
+  </var>
+  , which holds the list of parameters. You need to use a pair of parentheses even if you have no parameters in the procedure (in other words, even if the parameter list is empty).
+ </p>
+ <p variant="body1">
+  The last part of the procedure contains the logic you want to implement. For example, you might require your procedure to select all data from a table in the database.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Stored procedures with multiple parameters
+  </strong>
+ </h2>
+ <p variant="body1">
+  You can also create a more sophisticated stored procedure with multiple parameters and statements. However, these procedures require additional steps to consider in the development process.
+ </p>
+ <p variant="body1">
+  For example, when creating these procedures, you first need to change the delimiter and then use the BEGIN-END keywords to wrap the code in the body of the procedure as follows:
+ </p>
+ <pre language="sql">DELIMITER //  </pre>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  Changing the delimiter enables MySQL to compile the whole block of code in the BEGIN-END section of the stored procedure as one compound statement.
+ </p>
+ <pre language="sql">CREATE PROCEDURE ProcedureName (OUT parameter INT, IN parameter INT)  
+BEGIN   
+SELECT statement1_name;
+SELECT statement2_name;
+END // </pre>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  In this example, the two parameters are declared as OUT and IN types, as the intention is input and to output some values.
+ </p>
+ <p variant="body1">
+  The logic is implemented within the BEGIN and the END keywords which determines the body of the procedure.
+ </p>
+ <p variant="body1">
+  In this case the two statements were created in the body of the procedure.
+ </p>
+ <p variant="body1">
+  The double forward slashes
+  <var>
+   //
+  </var>
+  indicate the end of the entire query.
+ </p>
+ <p variant="body1">
+  Finally, you can change the delimiter back to the default semicolon so that you can keep using MySQL.
+ </p>
+ <pre language="sql">DELIMITER;</pre>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Invoke a stored procedure
+  </strong>
+ </h2>
+ <p variant="body1">
+  Once you’ve created your stored procedure you need to invoke it. To invoke the stored procedure, you need to use the CALL command followed by the procedure name, as in the following example:
+ </p>
+ <pre language="sql">CALL ProcedureName;</pre>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  To learn more about procedures, you can review the item
+  <a href="https://www.coursera.org/learn/database-structures-and-management-with-mysql/item/KB5Tc" title="">
+   Stored procedures in MySQL
+  </a>
+  in the ‘Database Structure and Management in MySQL’ course. You can also review the item
+  <a href="https://www.coursera.org/learn/advanced-mysql-topics/lecture/l8bCl/functions-and-stored-procedures-in-mysql" title="">
+   Functions and stored procedures in MySQL
+  </a>
+  in the ‘Advanced MySQL Topics’ course.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Prepared statements
+  </strong>
+ </h2>
+ <p variant="body1">
+  A prepared statement is a database optimization technique used to execute database queries faster and more securely. You can also invoke it to reuse the same SQL statements repeatedly. This leads to higher efficiency.
+ </p>
+ <p variant="body1">
+  Creating a prepared statement in MySQL reduces the time it takes to parse a query. The query is parsed once by MySQL regardless of the number of times it is used and executed.
+ </p>
+ <p variant="body1">
+  A prepared statement also minimizes the bandwidth usage when communicating data with a MySQL server. This is because you only need to pass the parameter’s values to the prepared statement, not the whole SQL statement.
+ </p>
+ <p variant="body1">
+  It also provides greater database security by preventing the use of database injections to hack your database.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Creating a prepared statement
+  </strong>
+ </h2>
+ <p variant="body1">
+  A prepared statement in MySQL is essentially a template that you create with a SQL statement that includes certain unspecified values which are used as parameters.
+ </p>
+ <p variant="body1">
+  In the following example, these values are labelled with a question mark "?" which represents four parameters that can be inserted into the table:
+ </p>
+ <pre language="sql">PREPARE statement_Name 'INSERT INTO table1 VALUES (?, ?, ?, ?)';</pre>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Calling a prepared statement
+  </strong>
+ </h2>
+ <p variant="body1">
+  To call the prepared statement, you need to use the execute command as follows:
+ </p>
+ <pre language="sql">EXECUTE statement_name USING @variable;</pre>
+ <p variant="body1">
+  To learn more about prepared statements, you can review the item
+  <a href="https://www.coursera.org/learn/advanced-mysql-topics/item/Me8ob" title="">
+   MySQL Prepared Statement
+  </a>
+  in the ‘Advanced MySQL Topics’ course.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Conclusion
+  </strong>
+ </h2>
+ <p variant="body1">
+  In this reading, you recapped the fundamentals of stored procedures and prepared statements. You are ready now to help Little Lemon optimize their database queries.
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

@@ -1,0 +1,291 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Introduction
+  </strong>
+ </h2>
+ <p variant="body1">
+  To manage your data in a relational database, you must have a good understanding of how to access, extract, process and manipulate information using various SQL queries.
+ </p>
+ <p variant="body1">
+  In this reading you’ll recap various types of SQL queries and learn more about triggers and transactions in MySQL.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Overview of SQL queries
+  </strong>
+ </h2>
+ <h3 level="3" variant="h3bold">
+  <strong>
+   Basic and complex SQL queries
+  </strong>
+ </h3>
+ <p variant="body1">
+  To extract all existing data from a table, you can use the primary form of a SQL query as follows:
+ </p>
+ <pre language="sql">SELECT * FROM table; </pre>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  If you need to perform more specific queries, then you may need to filter data, and use operators, alias and aggregate functions.
+ </p>
+ <p variant="body1">
+  For instance, you may need to extract specific information from your database. In this instance, you may need to write SQL queries to obtain data from a table with specific dates as demonstrated in the following basic syntax.
+ </p>
+ <pre language="sql">SELECT column_name 
+FROM table_name 
+WHERE date_column &gt; date_value;</pre>
+ <p variant="body1">
+ </p>
+ <h3 level="3" variant="h3bold">
+  A
+  <strong>
+   liases
+  </strong>
+ </h3>
+ <p variant="body1">
+  In some cases, you might find that existing data has been labelled with long, complicated or less meaningful names, which may confuse database users. In this case, you can use an alias to display a particular column with a more meaningful name.
+ </p>
+ <p variant="body1">
+  The use of an alias can also be very important when working with JOIN statements.
+ </p>
+ <p variant="body1">
+  An alias is created using the AS keyword as shown in the following syntax:
+ </p>
+ <pre language="sql">SELECT column_a AS 'Column A' FROM table;</pre>
+ <p variant="body1">
+ </p>
+ <h3 level="3" variant="h3bold">
+  <strong>
+   Aggregate functions
+  </strong>
+ </h3>
+ <p variant="body1">
+  You can also use aggregate functions to summarize data in your database such as
+  <var>
+   COUNT
+  </var>
+  ,
+  <var>
+   SUM
+  </var>
+  ,
+  <var>
+   MIN
+  </var>
+  ,
+  <var>
+   MAX
+  </var>
+  , and
+  <var>
+   AVERAGE
+  </var>
+  .
+ </p>
+ <p variant="body1">
+  For example, you can use the following syntax to count all values in a particular column.
+ </p>
+ <pre language="sql">SELECT COUNT(column_name) 
+FROM table_name;</pre>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  To perform more sophisticated SQL queries, you need to be familiar with more advanced SQL concepts such as subqueries, JOINS, virtual tables, stored procedures and prepared statements.
+ </p>
+ <p variant="body1">
+  These topics have already been covered in previous items, in addition to triggers and transactions concepts, which are important when performing complex operations.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Triggers
+  </strong>
+ </h2>
+ <h3 level="3" variant="h3bold">
+  <strong>
+   Overview of triggers
+  </strong>
+ </h3>
+ <p variant="body1">
+  A MySQL trigger is a set of actions available in the form of a stored program. The set of actions is invoked automatically when certain events occur. You can use triggers for different types of events, like inserting, deleting and updating data.
+ </p>
+ <p variant="body1">
+  Triggers can be used in MySQL for several purposes such as:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p variant="body1">
+    Enforcing business rules,
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Ensure data integrity,
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Insert records to other tables for audit trail purposes,
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Query data for reporting purposes,
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    and replicate data to different tables to achieve data consistency.
+   </p>
+  </li>
+ </ul>
+ <p variant="body1">
+ </p>
+ <h3 level="3" variant="h3bold">
+  <strong>
+   Trigger syntax
+  </strong>
+ </h3>
+ <p variant="body1">
+  To use a trigger, you first need to create it using the CREATE TRIGGER statement. Then define the trigger type. Is it an INSERT, UPDATE or DELETE trigger? And should it be executed BEFORE or AFTER the event?
+ </p>
+ <p variant="body1">
+  You also need to define the trigger’s logic, specify which table it’s assigned to, and how it should be applied to the table.
+ </p>
+ <p variant="body1">
+  An example of the syntax used to create a trigger in MySQL is as follows:
+ </p>
+ <pre language="sql">CREATE TRIGGER trigger_name 
+{BEFORE | AFTER} {INSERT | UPDATE| DELETE} 
+ON table_name FOR EACH ROW 
+trigger_body;</pre>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  The syntax to remove a MySQL trigger is as follows:
+ </p>
+ <pre language="sql">DROP TRIGGER [IF EXISTS] [schema_name] trigger_name</pre>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  To learn more about Triggers, you can review the
+  <a href="https://www.coursera.org/learn/advanced-mysql-topics/item/U8zM2" title="">
+   About triggers in MySQ
+  </a>
+  L item in ‘Advanced MySQL Topics’ course.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Transactions
+  </strong>
+ </h2>
+ <h3 level="3" variant="h3bold">
+  <strong>
+   Overview of transactions
+  </strong>
+ </h3>
+ <p variant="body1">
+  You should use MySQL transactions when carrying out critical activities, as they can be used to roll your transaction back to its original state if any failure occurs.
+ </p>
+ <p variant="body1">
+  This is especially important when writing a series of related queries that must all work together to achieve the expected outcome. If a specific query fails, then you can use the transaction statement to undo the changes that took place.
+ </p>
+ <p variant="body1">
+ </p>
+ <h3 level="3" variant="h3bold">
+  <strong>
+   Transaction syntax
+  </strong>
+ </h3>
+ <p variant="body1">
+  MySQL provides a set of statements to manage database transactions.
+ </p>
+ <p variant="body1">
+  The START TRANSACTION statement is the standard SQL statement used to start a transaction process. The COMMIT statement is used to commit the current transaction and make the transaction changes permanently, as shown in the following example:
+ </p>
+ <pre language="sql">START TRANSACTION; 
+SQL statements 
+COMMIT; </pre>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  If you want to roll back the current transaction and cancel the changes made to the database, you can use the ROLLBACK statement as follows:
+ </p>
+ <pre language="sql">START TRANSACTION; 
+SQL statements 
+ROLLBACK; </pre>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  To learn more about transactions, you can review the
+  <a href="https://www.coursera.org/learn/advanced-mysql-topics/lecture/oBz8v/mysql-transaction" title="">
+   MySQL Transaction
+  </a>
+  item in the ‘Advanced MySQL Topics’ course.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Conclusion
+  </strong>
+ </h2>
+ <p variant="body1">
+  In this reading, you recapped the basics of SQL queries, triggers and transactions. You are now ready to help Little Lemon develop their table booking system in this lesson’s exercises.
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

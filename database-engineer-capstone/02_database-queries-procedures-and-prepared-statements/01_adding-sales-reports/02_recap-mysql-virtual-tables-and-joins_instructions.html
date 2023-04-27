@@ -1,0 +1,279 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Introduction
+  </strong>
+ </h2>
+ <p variant="body1">
+  To manage your data in a relational database, you must have a good understanding of how to access, extract, process and manipulate information using various SQL queries.
+ </p>
+ <p variant="body1">
+  In this reading you will recap different SQL queries with a particular focus on subqueries, virtual tables and JOINS.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Overview of SQL queries
+  </strong>
+ </h2>
+ <p variant="body1">
+  To extract all data existing in a table, you can use the primary form of SQL query as follows:
+ </p>
+ <pre language="sql">SELECT * FROM table; </pre>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  To perform more specific queries, you may need to filter data, and use operators, aliases and aggregate functions.
+ </p>
+ <p variant="body1">
+  For instance, sometimes you need to extract specific information from your database. This involves writing SQL queries with specific filtering criteria.
+ </p>
+ <p variant="body1">
+  For example, to obtain data from a table with specific dates you can use the following syntax.:
+ </p>
+ <pre language="sql">SELECT column_name 
+FROM table_name 
+WHERE date_column &gt; date_value;</pre>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  In some cases, existing data is labelled with long, complicated or less meaningful names, which may confuse users. In this situation, you can use an alias to display a particular column with a more meaningful name.
+ </p>
+ <p variant="body1">
+  An alias is created by using the AS keyword as shown in the following syntax:
+ </p>
+ <pre language="sql">SELECT column_a AS 'Column A' 
+FROM table_name; </pre>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  Also, using aliases can be very important when making use of JOIN statements.
+ </p>
+ <p variant="body1">
+  You can also use the aggregate functions to summarize data in your database such as
+  <var>
+   COUNT
+  </var>
+  ,
+  <var>
+   SUM
+  </var>
+  ,
+  <var>
+   MIN
+  </var>
+  ,
+  <var>
+   MAX
+  </var>
+  , and
+  <var>
+   AVERAGE
+  </var>
+  . For example, you can use the following syntax to count all values in a particular column.
+ </p>
+ <pre language="sql">SELECT COUNT(column_name) 
+FROM table_name;</pre>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  To perform more sophisticated SQL queries, you need to be familiar with subqueries, JOINS and virtual tables.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Subqueries
+  </strong>
+ </h2>
+ <p variant="body1">
+  A subquery is a query within another query. You can create a subquery as an inner query and include it in another query called outer query. The inner query can be thought of as the child query and the outer query as the parent query.
+ </p>
+ <p variant="body1">
+  Subqueries, also called nested queries, can be placed in the
+  <var>
+   SELECT
+  </var>
+  ,
+  <var>
+   FROM
+  </var>
+  or
+  <var>
+   WHERE
+  </var>
+  clause to return relevant data. In a subquery you can use several types of operators including
+  <var>
+   ANY
+  </var>
+  ,
+  <var>
+   ALL
+  </var>
+  ,
+  <var>
+   EXIST
+  </var>
+  and
+  <var>
+   NOT EXISTS
+  </var>
+  .
+ </p>
+ <p variant="body1">
+  The following syntax makes use of the
+  <var>
+   EXISTS
+  </var>
+  operator to test for the existence of any records in the subquery:
+ </p>
+ <pre language="sql">SELECT column_name(s) 
+FROM table_name 
+WHERE EXISTS (SELECT column_name FROM table_name WHERE condition);</pre>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  To learn more about subqueries in relational database, you can review the
+  <a href="https://www.coursera.org/learn/database-structures-and-management-with-mysql/lecture/4vYAK/joins" title="">
+   JOINS
+  </a>
+  item in the ‘Database Structures and Management with MySQL’ lesson.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Joins
+  </strong>
+ </h2>
+ <p variant="body1">
+  JOINS are important for obtaining data from multiple tables in relational databases. You can use different types of JOIN to explore the relationships between different records of data that exist in different tables.
+ </p>
+ <p variant="body1">
+  The main JOINS supported in MySQL include the INNER JOIN, the LEFT JOIN and the RIGHT JOIN.
+ </p>
+ <pre language="sql">SELECT columns 
+FROM table1 INNER JOIN table2 
+ON table1.column = table2.column;</pre>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  To learn more about the different JOINS supported in MySQL, you can review the
+  <a href="https://www.coursera.org/learn/database-structures-and-management-with-mysql/lecture/4vYAK/joins" title="">
+   JOINS
+  </a>
+  item in ‘Database Structures and Management with MySQL’.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Virtual tables
+  </strong>
+ </h2>
+ <p variant="body1">
+  Virtual tables are very helpful for summarizing data. The SQL view creates a virtual table from existing tables in the database. Key advantages of virtual tables include:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p variant="body1">
+    Focus on specific data in the database.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Reduce data returned from a query.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Include complex calculations and functions.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Save time in querying data.
+   </p>
+  </li>
+  <li>
+   <p variant="body1">
+    Reduce report complexity.
+   </p>
+  </li>
+ </ul>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  The basic syntax to create a virtual table in SQL is as follows:
+ </p>
+ <pre language="sql">CREATE VIEW virtual_table AS SELECT column FROM table;</pre>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  To learn more about virtual tables, you can review the
+  <a href="https://www.coursera.org/learn/database-structures-and-management-with-mysql/item/t41NM" title="">
+   MySQL Create View
+  </a>
+  item in ‘Database Structures and Management with MySQL’.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Conclusion
+  </strong>
+ </h2>
+ <p variant="body1">
+  In this reading, you recapped the fundamentals of SQL queries with a particular focus on subqueries, virtual tables and JOINS. You are now ready to help Little Lemon query data from their database by solving different tasks and activities introduced in this lesson.
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

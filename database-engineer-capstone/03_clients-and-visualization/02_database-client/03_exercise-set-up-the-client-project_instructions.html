@@ -1,0 +1,190 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Overview
+  </strong>
+ </h2>
+ <p variant="body1">
+  At this point you are familiar with all the tools required for creating a booking system for Little Lemon. You have refreshed your knowledge on Python, Jupyter Notebooks, Connector/python and version control. Now you are ready for this exercise, which is to create your working environment.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Scenario
+  </strong>
+ </h2>
+ <p variant="body1">
+  Little Lemon needs you to help them to build a Booking System so that their guests can book tables with the restaurant. Use your knowledge of database clients to help Little Lemon complete this task.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Prerequisites
+  </strong>
+ </h2>
+ <p variant="body1">
+  To complete this task, you need to create a folder and then open a command prompt at that location. Next, to start writing code to create the booking system, you first need to ensure that you have Python installed, a working IDE and configured a driver that you can use to interact with your database.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Task Instructions
+  </strong>
+ </h2>
+ <p variant="body1">
+  Complete the following tasks to set up the client project.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Task 1
+  </strong>
+ </h2>
+ <p variant="body1">
+  Your first task is to navigate to your terminal and ensure that Python is installed and available on the command path. To complete this task, type the following syntax:
+ </p>
+ <pre language="python">python --version</pre>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  This should display the version number of the python installed. Your OS should be running Python version 3. If faced with an earlier version of Python, or a
+  <var>
+   command not found
+  </var>
+  <em>
+  </em>
+  message, navigate to
+  <a href="https://www.python.org/downloads/" title="">
+   https://www.python.org/downloads/
+  </a>
+  for instructions on how to configure and install an appropriate version for your operating system.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Task 2
+  </strong>
+ </h2>
+ <p variant="body1">
+  Having established that an up-to date version of python is installed on your machine you will need to install Jupyter. You can install Jupyter using the following code:
+ </p>
+ <pre language="python">python -m pip install jupyter</pre>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  Once Jupyter is installed, you can open a notebook by typing the following command in the terminal:
+ </p>
+ <pre language="python">jupyter notebook </pre>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  Once you’ve opened Jupyter, you then need to create a new notebook for writing your code by clicking new and then selecting ipykernel. This action creates a new notebook from which you can compile code.
+ </p>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Task 3
+  </strong>
+ </h2>
+ <p variant="body1">
+  Your third and final task is to establish a connection between Python and your database using the following steps:
+ </p>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  <strong>
+   Step One:
+  </strong>
+ </p>
+ <p variant="body1">
+  Ensure that mysql-connector is installed by running the command:
+ </p>
+ <pre language="python">!pip install mysql-connector-python</pre>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  <strong>
+   Step Two:
+  </strong>
+ </p>
+ <p variant="body1">
+  Import the connector under the alias connector:
+ </p>
+ <pre language="python">import mysql.connector as connector</pre>
+ <p variant="body1">
+ </p>
+ <p variant="body1">
+  <strong>
+   Step Three:
+  </strong>
+ </p>
+ <p variant="body1">
+  Verify that a connection can be made with your database by calling the connection method from the connector class:
+ </p>
+ <pre language="python">connection = connector.connect(user = "your_user_name", password = "your_password_for_database")</pre>
+ <p variant="body1">
+ </p>
+ <h2 level="2" variant="h2semibold">
+  <strong>
+   Conclusion
+  </strong>
+ </h2>
+ <p variant="body1">
+  You now have configured your working environment so that you can use it to write the code for Little Lemon’s booking system.
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

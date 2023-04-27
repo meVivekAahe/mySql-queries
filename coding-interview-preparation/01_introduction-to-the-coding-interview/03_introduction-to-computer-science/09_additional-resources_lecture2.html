@@ -1,0 +1,442 @@
+<html>
+<title> Data Structures: Lecture 2 </title>
+<body>
+<h1>Complexity Analysis</h1>
+An essential aspect to data structures is <em>algorithms</em>.
+Data structures are implemented using algorithms.  An algorithm
+is a procedure that you can write as a C function or program, or
+any other language.  An algorithm states explicitly how the data will
+be manipulated. 
+
+<h2>Algorithm Efficiency</h2>
+Some algorithms are more efficient than others.  We would prefer to
+chose an efficient algorithm, so it would be nice to have metrics for
+comparing algorithm efficiency.
+<p>
+The <em>complexity</em> of an algorithm is a function describing the efficiency
+of the algorithm in terms of the amount of data the algorithm must process.
+Usually there are natural units for the domain and range of this function.
+There are two main complexity measures of the efficiency of an algorithm:
+<ul>
+<li> <em>Time complexity</em> is a function describing the amount of time
+an algorithm takes in terms of the amount of input to the algorithm.  
+"Time" can mean the number of memory accesses performed, the number of 
+comparisons between integers, the number of times some inner loop is 
+executed, or some other natural unit related to the amount of real time
+the algorithm will take.  We try to keep this idea of time separate from
+"wall clock" time, since many factors unrelated to the algorithm itself
+can affect the real time (like the language used, type of computing hardware,
+proficiency of the programmer, optimization in the compiler, etc.).
+It turns out that, if we chose the units wisely, all of the other
+stuff doesn't matter and we can get an independent measure of the
+efficiency of the algorithm.
+<li> <em>Space complexity</em> is a function describing the amount of
+memory (space) an algorithm takes in terms of the amount of input
+to the algorithm.  We often speak of "extra" memory needed, not counting
+the memory needed to store the input itself.  Again, we use natural
+(but fixed-length) units to measure this.  We can use bytes, but it's
+easier to use, say, number of integers used, number of fixed-sized
+structures, etc.  In the end, the function we come up with will be
+independent of the actual number of bytes needed to represent the unit.
+Space complexity is sometimes ignored because the space used is minimal
+and/or obvious, but sometimes it becomes as important an issue as time.
+</ul>
+For example, we might say "this algorithm takes <em>n</em><sup>2</sup>
+time," where <em>n</em> is the number of items in the input.  Or we
+might say "this algorithm takes constant extra space," because the amount 
+of extra memory needed doesn't vary with the number of items processed.
+<p>
+For both time and space, we are interested in the <em>asymptotic</em>
+complexity of the algorithm: When <em>n</em> (the number of items of input)
+goes to infinity, what happens to the performance of the algorithm?
+<h2>An example: Selection Sort</h2>
+Suppose we want to put an array of <em>n</em>
+floating point numbers into ascending numerical order.  This task is called
+<em>sorting</em> and should be somewhat familiar.  One simple algorithm for
+sorting is <em>selection sort</em>.  You let an index <em>i</em> go from
+0 to <em>n</em>-1, exchanging the <em>i</em>th element of the array with the
+minimum element from <em>i</em> up to <em>n</em>.  Here are the iterations
+of selection sort carried out on the sequence {4 3 9 6 1 7 0}:
+<pre>
+index	0	1	2	3	4	5	6	comments
+---------------------------------------------------------	--------
+    |	4	3	9	6	1	7	0	initial
+i=0 |	0	3	9	6	1	7	4	swap 0,4
+i=1 |	0	1	9	6	3	7	4	swap 1,3
+i=2 |	0	1	3	6	9	7	4	swap 3, 9
+i=3 |	0	1	3	4	9	7	6	swap 6, 4
+i=4 |	0	1	3	4	6	7	9	swap 9, 6
+i=5 |	0	1	3	4	6	7	9	(done)
+</pre>
+Here is a simple implementation in C:
+<pre>
+int find_min_index (float [], int, int);
+void swap (float [], int, int);
+
+/* selection sort on array v of n floats */
+
+void selection_sort (float v[], int n) {
+	int	i;
+
+	/* for i from 0 to n-1, swap v[i] with the minimum
+	 * of the i'th to the n'th array elements
+	 */
+	for (i=0; i&lt;n-1; i++) 
+		swap (v, i, find_min_index (v, i, n));
+}
+
+/* find the index of the minimum element of float array v from
+ * indices start to end
+ */
+int find_min_index (float v[], int start, int end) {
+	int	i, mini;
+
+	mini = start;
+	for (i=start+1; i&lt;end; i++) 
+		if (v[i] &lt; v[mini]) mini = i;
+	return mini;
+}
+
+/* swap i'th with j'th elements of float array v */
+void swap (float v[], int i, int j) {
+	float	t;
+
+	t = v[i];
+	v[i] = v[j];
+	v[j] = t;
+}
+</pre>
+Now we want to 
+quantify the performance of the algorithm, i.e., the amount of time and
+space taken in terms of <em>n</em>.  We are mainly interested in
+how the time and space requirements change as <em>n</em> grows large;
+sorting 10 items is trivial for almost any reasonable algorithm
+you can think of, but what about 1,000, 10,000, 1,000,000 or more
+items? 
+<p>
+For this example, the amount of space needed is clearly dominated by
+the memory consumed by the array, so we don't have to worry about it;
+if we can store the array, we can sort it.  That is, it takes
+constant extra space.
+<p>
+So we are mainly interested in the amount of time the algorithm takes.
+One approach is to count the number of array accesses made
+during the execution of the algorithm; since each array access takes a
+certain (small) amount of time related to the hardware, this count
+is proportional to the time the algorithm takes.
+<p>
+We will end up with a function in terms of <em>n</em> that
+gives us the number of array accesses for the algorithm.  We'll call
+this function <em>T</em>(<em>n</em>), for Time.  
+<p>
+<em>T</em>(<em>n</em>) is the total number of accesses made from the
+beginning of <tt>selection_sort</tt> until the end.  <tt>selection_sort</tt>
+itself simply calls <tt>swap</tt> and <tt>find_min_index</tt> as <em>i</em>
+goes from 0 to <em>n</em>-1, so 
+<blockquote>
+<em>T</em>(<em>n</em>) = <img src="t1.gif" align=middle> [ time for <tt>swap</tt> + time for <tt>find_min_index (v, i, n)</tt>] .
+</blockquote>
+(<em>n</em>-2 because the <tt>for</tt> loop goes from 0 up to <b>but not including</b>
+<em>n</em>-1).  (<b>Note</b>: for those not familiar with Sigma notation,
+that nasty looking formula above just means "the sum, as we let <em>i</em>
+go from 0 to <em>n</em>-2, of the time for <tt>swap</tt> plus the time
+for <tt>find_min_index (v, i, n)</tt>.)
+The <tt>swap</tt> function makes four accesses to the array, so the function
+is now
+<blockquote>
+<em>T</em>(<em>n</em>) = <img src="t1.gif" align=middle> [ 4 + time for <tt>find_min_index (v, i, n)</tt>] .
+</blockquote>
+If we look at <tt>find_min_index</tt>, we see it does two array accesses
+for each iteration through the <tt>for</tt> loop, and it does the 
+<tt>for</tt> loop <em>n</em> - <em>i</em> - 1 times:
+<blockquote>
+<em>T</em>(<em>n</em>) = <img src="t1.gif" align=middle> [ 4 + 2 (<em>n</em> - <em>i</em> - 1)] .
+</blockquote>
+With some mathematical manipulation, we can break this up into:
+<blockquote>
+<em>T</em>(<em>n</em>) = 
+4(<em>n</em>-1) + 2<em>n</em>(<em>n</em>-1) - 2(<em>n</em>-1) -
+2 <img src="t1.gif" align=middle> <em>i</em> .
+</blockquote>
+(everything times <em>n</em>-1 because we go from 0 to <em>n-2</em>, i.e., 
+<em>n-1</em> times).
+Remembering that the sum of <em>i</em> as <em>i</em> goes from 0 to <em>n</em>
+is (<em>n</em>(<em>n</em>+1))/2, then substituting in <em>n-2</em>
+and cancelling out the 2's:
+<blockquote>
+<em>T</em>(<em>n</em>) = 
+4(<em>n</em>-1) + 2<em>n</em>(<em>n</em>-1) - 2(<em>n</em>-1) -
+((<em>n-2</em>)(<em>n-1</em>)).
+</blockquote>
+and to make a long story short,
+<blockquote>
+<em>T</em>(<em>n</em>) = <em>n</em><sup>2</sup> + 3<em>n</em> - 4 .
+</blockquote>
+So this function gives us the number of array accesses <tt>selection_sort</tt>
+makes for a given array size, and thus an idea of the amount of time
+it takes.  There are other factors affecting the performance, for instance
+the loop overhead, other processes running on the system, and the fact
+that access time to memory is not really a constant.  But this kind
+of analysis gives you a good idea of the amount of time you'll spend
+waiting, and allows you to compare this algorithms to other algorithms
+that have been analyzed in a similar way.
+<p>
+Another algorithm used for sorting is called <em>merge sort</em>.  The details
+are somewhat more complicated and will be covered later in the course,
+but for now it's sufficient to state that a certain C implementation
+takes <em>T<sub>m</sub></em>(<em>n</em>) = 8<em>n</em> log <em>n</em> memory accesses
+to sort <em>n</em> elements.  Let's look at a table of <em>T</em>(n)
+vs. <em>T<sub>m</sub></em>(n):
+<pre>
+ n	T(n)	T<sub>m</sub>(n)
+---	----	-----
+2	6	11
+3	14	26
+4	24	44
+5	36	64
+6	50	86
+7	66	108
+8	84	133
+9	104	158
+10	126	184
+11	150	211
+12	176	238
+13	204	266
+14	234	295
+15	266	324
+16	300	354
+17	336	385
+18	374	416
+19	414	447
+20	456	479
+</pre>
+<em>T</em>(n) seems to outperform <em>T<sub>m</sub></em>(n) here, so at first glance
+one might think selection sort is better than merge sort.  But if we
+extend the table:
+<pre>
+ n	T(n)	T<sub>m</sub>(n)
+---	----	-----
+20	456	479
+21	500	511
+22	546	544
+23	594	576
+24	644	610
+25	696	643
+26	750	677
+27	806	711
+28	864	746
+29	924	781
+30	986	816
+</pre>
+we see that merge sort starts to take a little less time than selection
+sort for larger values of <em>n</em>.  If we extend the table to large
+values:
+<pre>
+ n		T(n)			T<sub>m</sub>(n)
+---		----			-----
+100     	10,296    		3,684
+1,000    	1,002,996  		55,262
+10,000   	100,029,996       	736,827
+100,000  	10,000,299,996     	9,210,340
+1,000,000 	1,000,002,999,996   	110,524,084
+10,000,000      100,000,029,999,996 	1,289,447,652
+</pre>
+we see that merge sort does much better than selection sort.  To put this
+in perspective, recall that a typical memory access is done on the order
+of nanoseconds, or billionths of a second.  Selection sort on ten million
+items takes roughly 100 trillion accesses; if each one takes ten nanoseconds
+(an optimistic assumption based on 1998 hardware) it will take 1,000,000 
+seconds, or about 11 and a half days to complete.  Merge sort,
+with a "mere" 1.2 billion accesses, will be done in 12 seconds.  For
+a billion elements, selection sort takes almost 32,000 <b>years</b>, while
+merge sort takes about 37 minutes.  And, assuming a large enough RAM
+size, a trillion elements will take selection sort 300 million years,
+while merge sort will take 32 days.  Since computer hardware is not
+resilient to the large asteroids that hit our planet roughly once
+every 100 million years causing mass extinctions, 
+selection sort is not feasible for this task. (<b>Note</b>: you will
+notice as you study CS that computer scientists like to put things
+in astronomical and geological terms when trying to show an approach
+is the wrong one.  Just humor them.)
+<h2>Asymptotic Notation</h2>
+This function we came up with,
+<em>T</em>(<em>n</em>) = <em>n</em><sup>2</sup> + 3<em>n</em> - 4,
+describes precisely the number of array accesses made in the algorithm.
+In a sense, it is a little too precise; all we really need to say
+is <em>n</em><sup>2</sup>; the lower order terms contribute almost nothing
+to the sum when <em>n</em> is large.  We would like a way to justify
+ignoring those lower order terms and to make comparisons between algorithms
+easy.  So we use asymptotic notation.
+<h3>Big O</h3>
+The most common notation used is "big O" notation.  In the above
+example, we would say <em>n</em><sup>2</sup> + 3<em>n</em> - 4 = 
+<em>O</em>(<em>n</em><sup>2</sup>) (read "big oh of n squared").
+This means, intuitively, that the important part of 
+<em>n</em><sup>2</sup> + 3<em>n</em> - 4 is the <em>n</em><sup>2</sup>
+part.
+<blockquote>
+<b>Definition</b>: Let <em>f</em>(<em>n</em>) and <em>g</em>(<em>n</em>)
+be functions, where <em>n</em> is a positive integer.  We write
+<em>f</em>(<em>n</em>) = <em>O</em>(<em>g</em>(<em>n</em>)) 
+if and only if there exists a real number <em>c</em> and positive
+integer <em>n</em><sub>0</sub> satisfying 
+0 &lt;= <em>f</em>(<em>n</em>) &lt;= <em>cg</em>(<em>n</em>) for
+all <em>n</em> &gt;= <em>n</em><sub>0</sub>.  (And we say,
+"f of n is big oh of g of n."  We might also say or write
+<em>f</em>(<em>n</em>) <em>is in</em> <em>O</em>(<em>g</em>(<em>n</em>)),
+because we can think of <em>O</em> as a <em>set</em> of functions all
+with the same property.  But we won't often do that in Data Structures.)
+</blockquote>
+This means that, for example, that functions like
+<em>n</em><sup>2</sup> + <em>n</em>, 4<em>n</em><sup>2</sup> - 
+<em>n</em> log </em>n</em> + 12, <em>n</em><sup>2</sup>/5 - 100<em>n</em>,
+<em>n</em> log </em>n</em>, 50<em>n</em>, and so forth are all
+<em>O</em>(<em>n</em><sup>2</sup>).
+Every function <em>f</em>(<em>n</em>) bounded above by some constant multiple
+<em>g</em>(<em>n</em>) for all values of <em>n</em> greater than a certain value
+is <em>O</em>(<em>g</em>(<em>n</em>)).
+<p>
+Examples:
+<ul>
+<li> Show 3<em>n</em><sup>2</sup> + 4<em>n</em> - 2 = <em>O</em>(<em>n</em><sup>2</sup>).
+<br>
+We need to find <em>c</em> and <em>n</em><sub>0</sub> such that:
+<blockquote>
+3<em>n</em><sup>2</sup> + 4<em>n</em> - 2 &lt;= <em>c</em><em>n</em><sup>2</sup> for all <em>n</em> &gt;= <em>n</em><sub>0</sub> .
+</blockquote>
+Divide both sides by <em>n</em><sup>2</sup>, getting:
+<blockquote>
+3 + 4/<em>n</em> - 2/<em>n</em><sup>2</sup> &lt;= <em>c</em> for all <em>n</em> &gt;= <em>n</em><sub>0</sub> .
+</blockquote>
+If we choose <em>n</em><sub>0</sub> equal to 1, then we need a value of
+<em>c</em> such that:
+<blockquote>
+3 + 4 - 2 &lt;= <em>c</em>
+</blockquote>
+We can set <em>c</em> equal to 6.  Now we have:
+<blockquote>
+3<em>n</em><sup>2</sup> + 4<em>n</em> - 2 &lt;= 6<em>n</em><sup>2</sup> for all <em>n</em> &gt;= 1 .
+</blockquote>
+<li> Show <em>n</em><sup>3</sup> != <em>O</em>(<em>n</em><sup>2</em>).
+Let's assume to the contrary that
+<blockquote>
+<em>n</em><sup>3</sup> = <em>O</em>(<em>n</em><sup>2</sup>)
+</blockquote>
+Then there must exist constants <em>c</em> and <em>n</em><sub>0</sub> such that
+<blockquote>
+<em>n</em><sup>3</sup> &lt;= <em>cn</em><sup>2</sup> for all <em>n</em> &gt;=
+<em>n</em><sub>0</sub>.
+</blockquote>
+Dividing by <em>n</em><sup>2</em>, we get:
+<blockquote>                                                                    
+<em>n</em> &lt;= <em>c</em> for all <em>n</em> &gt;=     
+<em>n</em><sub>0</sub>.
+</blockquote>      
+But this is not possible; we can never choose a constant <em>c</em>
+large enough that <em>n</em> will never exceed it, since <em>n</em>
+can grow without bound.  Thus, the original assumption, that
+<em>n</em><sup>3</sup> = <em>O</em>(<em>n</em><sup>2</sup>), must
+be wrong so <em>n</em><sup>3</sup> != <em>O</em>(<em>n</em><sup>2</sup>).
+</ul>
+Big O gives us a formal way of expressing <em>asymptotic upper bounds</em>,
+a way of bounding from above the growth of a function.  Knowing where
+a function falls within the big-O hierarchy allows us to compare it
+quickly with other functions and gives us an idea of which algorithm has
+the best time performance.  And yes, there is also a "little o" we'll
+see later.
+<h3>Properties of Big O</h3>
+The definition of big O is pretty ugly to have to work with all the time,
+kind of like the "limit" definition of a derivative in Calculus.
+Here are some helpful theorems you can use to simplify big O calculations:
+<ul>
+<li> Any <em>k</em><sup>th</sup> degree polynomial is <em>O</em>(<em>n</em><sup><em>k</em></sup>).
+<li> <em>a n<sup>k</sup></em> = <em>O</em>(<em>n<sup>k</sup></em>) for any
+<em>a</em> &gt; 0.
+<li> Big O is <em>transitive</em>.  That is, if <em>f</em>(<em>n</em>)
+= <em>O</em>(<em>g</em>(<em>n</em>)) and <em>g</em>(<em>n</em>)
+is <em>O</em>(<em>h</em>(<em>n</em>)), then 
+<em>f</em>(<em>n</em>) = <em>O</em>(<em>h</em>(<em>n</em>)).
+<li>log<sub><em>a</em></sub><em>n</em> = <em>O</em>(log<sub><em>b</em></sub>
+<em>n</em>) for any <em>a</em>, <em>b</em> &gt; 1.  This practically means
+that we don't care, asymptotically, what base we take our logarithms to.
+(I said asymptotically.  In a few cases, it does matter.)  
+<li> Big O of a sum of functions is big O of the largest function.
+How do you know which one is the largest?  The one that all the others
+are big O of.  One consequence of this is, if <em>f</em>(<em>n</em>)
+= <em>O</em>(<em>h</em>(<em>n</em>)) and <em>g</em>(<em>n</em>)
+is <em>O</em>(<em>h</em>(<em>n</em>)), then <em>f</em>(<em>n</em>) +
+<em>g</em>(<em>n</em>) = <em>O</em>(<em>h</em>(<em>n</em>)).
+<li> <em>f</em>(<em>n</em>) = <em>O</em>(<em>g</em>(<em>n</em>)) is 
+true if 
+lim<sub><em>n</em>-&gt;infinity</sub><em>f</em>(<em>n</em>)/<em>g</em>(<em>n</em>)
+is a constant.
+</ul>
+<h3>Lower Bounds and Tight Bounds</h3>
+Big O only gives you an upper bound on a function, i.e., if we ignore
+constant factors and let <em>n</em> get big enough, we know some function 
+will never exceed some other function.  But this can give us too much
+freedom.  For instance, the time for selection sort is easily
+<em>O</em>(<em>n</em><sup>3</sup>), because <em>n</em><sup>2</sup>
+is <em>O</em>(<em>n</em><sup>3</sup>).  But we know that
+<em>O</em>(<em>n</em><sup>2</sup>) is a more meaningful upper bound.
+What we need is to be able to describe a <em>lower bound</em>, a function
+that always grows more slowly than <em>f</em>(<em>n</em>), and a 
+<em>tight bound</em>, a function that grows at about the same rate as
+<em>f</em>(<em>n</em>).  Your book give a good theoretical introduction
+to these two concepts; let's look at a different (and probably easier
+to understand) way to approach this.  
+<p>
+Big Omega is for lower bounds what big O is for upper bounds:
+<blockquote>
+<b>Definition</b>: Let <em>f</em>(<em>n</em>) and <em>g</em>(<em>n</em>)
+be functions, where <em>n</em> is a positive integer.  We write
+<em>f</em>(<em>n</em>) = <img src="omega.uc.gif" align="middle">(<em>g</em>(<em>n</em>))
+if and only if <em>g</em>(<em>n</em>) = <em>O</em>(<em>f</em>(<em>n</em>)).
+We say "f of n is omega of g of n."
+</blockquote>
+This means <em>g</em> is a lower bound for <em>f</em>; after a
+certain value of <em>n</em>, and without regard to multiplicative
+constants, <em>f</em> will never go below <em>g</em>.
+<p>
+Finally, theta notation combines upper bounds with lower bounds to get
+tight bounds:
+<blockquote>
+<b>Definition</b>: Let <em>f</em>(<em>n</em>) and <em>g</em>(<em>n</em>)
+be functions, where <em>n</em> is a positive integer.  We write
+<em>f</em>(<em>n</em>) = <img src="theta.uc.gif" align="middle">(<em>g</em>(<em>n</em>))
+if and only if <em>g</em>(<em>n</em>) = <em>O</em>(<em>f</em>(<em>n</em>)).
+and <em>g</em>(<em>n</em>) = <img src="omega.uc.gif" align="middle">(<em>f</em>(<em>n</em>)).
+We say "f of n is theta of g of n."
+</blockquote>
+<h3>More Properties</h3>
+<ul>
+<li>The first four properties listed above for big O are also true
+for Omega and Theta.
+<li> Replace <em>O</em> with <img src="omega.uc.gif" align="middle"> and
+"largest" with "smallest" in the fifth property for big O and it remains
+true.
+<li> <em>f</em>(<em>n</em>) = <img src="omega.uc.gif" align="middle">(<em>g</em>(<em>n</em>)) is 
+true if 
+lim<sub><em>n</em>-&gt;infinity</sub><em>g</em>(<em>n</em>)/<em>f</em>(<em>n</em>)
+is a constant.
+<li> <em>f</em>(<em>n</em>) = <img src="theta.uc.gif" align="middle">(<em>g</em>(<em>n</em>)) is 
+true if 
+lim<sub><em>n</em>-&gt;infinity</sub><em>f</em>(<em>n</em>)/<em>g</em>(<em>n</em>)
+is a non-zero constant.
+<li> <em>n<sup>k</sup></em> = <em>O</em>((1+<img src="epsilon.lc.gif" align="middle">)
+<sup><em>n</em></sup>)) for any positive <em>k</em> and <img src="epsilon.lc.gif" align="middle">.
+That is, any polynomial is bound from above by any exponential.  So any
+algorithm that runs in polynomial time is (eventually, for large enough
+value of <em>n</em>) preferable to any algorithm
+that runs in exponential time.
+<li> (log <em>n</em>)<sup><img src="epsilon.lc.gif" align="middle"></sup>
+= <em>O</em>(<em>n</em><sup>
+<em>k</em></sup>)
+for any positive <em>k</em> and <img src="epsilon.lc.gif" align="middle">.  That means 
+a logarithm to any power grows more slowly than a polynomial (even 
+things like square root, 100th root, etc.)  So an algorithm that runs in
+logarithmic time is (eventually) preferable to an algorithm that runs
+in polynomial (or indeed exponential, from above) time.
+</ul>
+</body>
+</html>
